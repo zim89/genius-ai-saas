@@ -3,7 +3,7 @@ import MobileSidebar from '@/components/MobileSidebar';
 
 const Navbar = () => {
   return (
-    <div className='flex items-center p-4'>
+    <div className='flex h-20 items-center'>
       <MobileSidebar />
       <div className='flex w-full justify-end'>
         <UserButton afterSignOutUrl='/' />
