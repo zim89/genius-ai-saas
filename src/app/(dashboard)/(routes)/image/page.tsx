@@ -22,8 +22,10 @@ import Heading from '@/components/Heading';
 import Loader from '@/components/Loader';
 import Empty from '@/components/Empty';
 import { amountOptions, formSchema, resolutionOptions } from './constants';
+import { useProModal } from '@/hooks/useProModal';
 
 const Page = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [photos, setPhotos] = useState<string[]>([]);
 
@@ -45,8 +47,9 @@ const Page = () => {
       const urls = response.data.map((image: { url: string }) => image.url);
       setPhotos(urls);
     } catch (error: any) {
-      // TODO: Open pro modal
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }

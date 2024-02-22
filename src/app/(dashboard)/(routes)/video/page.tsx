@@ -12,6 +12,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import Heading from '@/components/Heading';
 import Loader from '@/components/Loader';
 import Empty from '@/components/Empty';
+import { useProModal } from '@/hooks/useProModal';
 
 const formSchema = z.object({
   prompt: z.string().min(1, {
@@ -20,6 +21,7 @@ const formSchema = z.object({
 });
 
 const VideoPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [video, setVideo] = useState<string>();
 
@@ -39,8 +41,9 @@ const VideoPage = () => {
       setVideo(response.data[0]);
       form.reset();
     } catch (error: any) {
-      // TODO: Open pro modal
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }

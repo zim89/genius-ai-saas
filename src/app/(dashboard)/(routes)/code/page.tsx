@@ -16,8 +16,9 @@ import Loader from '@/components/Loader';
 import Empty from '@/components/Empty';
 import UserAvatar from '@/components/UserAvatar';
 import BotAvatar from '@/components/BotAvatar';
-import { ChatCompletionRequestMessage } from '@/app/api/code/route';
 import ReactMarkdown from 'react-markdown';
+import { useProModal } from '@/hooks/useProModal';
+import { ChatCompletionRequestMessage } from '@/app/api/code/route';
 
 const formSchema = z.object({
   prompt: z.string().min(1, {
@@ -26,6 +27,7 @@ const formSchema = z.object({
 });
 
 const CodePage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
@@ -53,8 +55,9 @@ const CodePage = () => {
 
       form.reset();
     } catch (error: any) {
-      // TODO: Open pro modal
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }

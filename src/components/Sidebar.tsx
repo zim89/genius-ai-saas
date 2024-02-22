@@ -1,14 +1,21 @@
 'use client';
-import { Montserrat } from 'next/font/google';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import {routes} from "@/lib/constants";
+import { Montserrat } from 'next/font/google';
+import { usePathname } from 'next/navigation';
+import { routes } from '@/lib/constants';
 import { cn } from '@/lib/utils';
+import FreeCounter from '@/components/FreeCounter';
 
 const montserrat = Montserrat({ weight: '600', subsets: ['latin'] });
 
-const Sidebar = () => {
+interface Props {
+  apiLimitCount: number;
+  isPro: boolean;
+  onClose?: () => void;
+}
+
+const Sidebar = ({ apiLimitCount = 0, isPro = false, onClose }: Props) => {
   const pathname = usePathname();
 
   return (
@@ -27,6 +34,7 @@ const Sidebar = () => {
             <Link
               key={route.href}
               href={route.href}
+              onClick={onClose}
               className={cn(
                 'group flex w-full cursor-pointer justify-start rounded-lg p-3 text-sm font-medium transition hover:bg-white/10 hover:text-white',
                 pathname === route.href
@@ -41,6 +49,7 @@ const Sidebar = () => {
           ))}
         </div>
       </div>
+      <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   );
 };

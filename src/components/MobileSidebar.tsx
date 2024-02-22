@@ -5,8 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 import Sidebar from '@/components/Sidebar';
 
-const MobileSidebar = () => {
+interface Props {
+  apiLimitCount: number;
+  isPro: boolean;
+}
+
+const MobileSidebar = ({ apiLimitCount = 0, isPro = false }: Props) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -16,15 +22,21 @@ const MobileSidebar = () => {
     return null;
   }
 
+  const onClose = () => setOpen(false);
+
   return (
-    <Sheet>
-      <SheetTrigger>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
         <Button variant='ghost' size='icon' className='md:hidden'>
           <Menu />
         </Button>
       </SheetTrigger>
       <SheetContent side='left' className='p-0'>
-        <Sidebar />
+        <Sidebar
+          isPro={isPro}
+          apiLimitCount={apiLimitCount}
+          onClose={onClose}
+        />
       </SheetContent>
     </Sheet>
   );
