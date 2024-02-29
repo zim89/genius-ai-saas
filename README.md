@@ -1,6 +1,6 @@
 # Build a SaaS AI Platform with Next.js 14, React, Tailwind, Prisma, Stripe
 
-![SaaS AI Platform with Next.js 14](https://github.com/zim89/genius-ai-saas/src/assets/images/genius-poster.png)
+![SaaS AI Platform with Next.js 14](https://github.com/zim89/genius-ai-saas/assets/images/genius-poster.png)
 
 This is a repository for Build a SaaS AI Platform with Next.js 14, React, Tailwind, Prisma, Stripe.
 
