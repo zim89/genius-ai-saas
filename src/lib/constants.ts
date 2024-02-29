@@ -91,3 +91,32 @@ export const tools = [
     href: '/code',
   },
 ] as const;
+
+export const testimonials = [
+  {
+    name: 'Tokio',
+    avatar: 'T',
+    title: 'Software Engineer',
+    description: "This is the best application I've ever used!",
+  },
+  {
+    name: 'Rio',
+    avatar: 'R',
+    title: 'Designer',
+    description: 'I use this daily for generating new photos!',
+  },
+  {
+    name: 'Berlin',
+    avatar: 'B',
+    title: 'CEO',
+    description:
+      'This app has changed my life, cannot imagine working without it!',
+  },
+  {
+    name: 'Dresden',
+    avatar: 'D',
+    title: 'CFO',
+    description:
+      'The best in class, definitely worth the premium subscription!',
+  },
+] as const;
