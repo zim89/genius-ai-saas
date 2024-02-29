@@ -13,6 +13,7 @@ import Heading from '@/components/Heading';
 import Loader from '@/components/Loader';
 import Empty from '@/components/Empty';
 import { useProModal } from '@/hooks/useProModal';
+import toast from 'react-hot-toast';
 
 const formSchema = z.object({
   prompt: z.string().min(1, {
@@ -43,6 +44,8 @@ const VideoPage = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error('Something went wrong.');
       }
     } finally {
       router.refresh();

@@ -15,6 +15,7 @@ import { useProModal } from '@/hooks/useProModal';
 import { tools } from '@/lib/constants';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import toast from 'react-hot-toast';
 
 const ProModal = () => {
   const proModal = useProModal();
@@ -26,7 +27,7 @@ const ProModal = () => {
       const response = await axios.get('/api/stripe');
       window.location.href = response.data.url;
     } catch (error) {
-      console.log(error, 'STRIPE_CLIENT_ERROR');
+      toast.error('Something went wrong');
     } finally {
       setLoading(false);
     }
