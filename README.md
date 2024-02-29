@@ -1,7 +1,7 @@
 # Build a SaaS AI Platform with Next.js 14, React, Tailwind, Prisma, Stripe
 
 <div align="center">
-  <img height="200" src="src/assets/images/genius-poster.png"  />
+  <img height="400" src="src/assets/images/genius-poster.png"  />
 </div>
 
 ###
