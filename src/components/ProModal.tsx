@@ -64,6 +64,7 @@ const ProModal = () => {
         </DialogHeader>
         <DialogFooter>
           <Button
+            disabled={loading}
             size='lg'
             variant='premium'
             onClick={onSubscribe}
